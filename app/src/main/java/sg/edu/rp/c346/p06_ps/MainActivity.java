@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Task> tasks;
     ArrayAdapter<Task> aaTasks;
 
+    private static int REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Intent intent = Intent(MainActivity.this, SecondActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, add.class);
+                startActivityForResult(intent, 1);
 
             }
         });
 
 
     }
+
 }

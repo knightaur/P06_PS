@@ -25,7 +25,7 @@ public class add extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        btnAdd = findViewById(R.id.btnAdd);
+        btnAdd = findViewById(R.id.btnAddTask);
         btnCancel = findViewById(R.id.btnCancel);
 
         etName = findViewById(R.id.etName);
