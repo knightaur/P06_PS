@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper db = new DBHelper(MainActivity.this);
         tasks = db.getAllTask();
-        aaTasks = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, tasks);
+        aaTasks = new ArrayAdapter<Task>(MainActivity.this, android.R.layout.simple_expandable_list_item_1, tasks);
         lv.setAdapter(aaTasks);
         aaTasks.notifyDataSetChanged();
 
