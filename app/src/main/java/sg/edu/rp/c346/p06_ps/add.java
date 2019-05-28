@@ -47,12 +47,19 @@ public class add extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 5);
                 Intent intent = new Intent(add.this, NotificationReceiver.class);
+                intent.putExtra("name" , name);
                 PendingIntent pendingIntent = PendingIntent.getActivity(add.this, reqCode , intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
                 finish();
 
 
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

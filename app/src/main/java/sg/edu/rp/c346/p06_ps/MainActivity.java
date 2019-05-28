@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Task> tasks;
     ArrayAdapter<Task> aaTasks;
 
-    private static int REQUEST_CODE = 1;
+    private static int REQUEST_CODE_1 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent dataIntent) {
+        super.onActivityResult(requestCode, resultCode, dataIntent);
+        DBHelper db = new DBHelper(MainActivity.this);
+
+       tasks.clear();
+       tasks = db.getAllTask();
+        aaTasks = new ArrayAdapter<Task>(MainActivity.this, android.R.layout.simple_expandable_list_item_1, tasks);
+        lv.setAdapter(aaTasks);
 
 
     }
