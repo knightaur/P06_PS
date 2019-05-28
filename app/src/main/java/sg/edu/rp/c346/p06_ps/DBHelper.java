@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("ALTER TABLE " + TABLE_TASK + " ADD COLUMN module_name TEXT ");
     }
 
-    public long insertNote(String name, String desc) {
+    public long insertTask(String name, String desc) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
@@ -55,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<Task> getAllNotes(String keyword) {
+    public ArrayList<Task> getAllTask(String keyword) {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
         SQLiteDatabase db = this.getReadableDatabase();
