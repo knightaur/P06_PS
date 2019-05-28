@@ -55,15 +55,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<Task> getAllTask(String keyword) {
+    public ArrayList<Task> getAllTask() {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns= {COLUMN_ID, COLUMN_NAME, COLUMN_DESC};
-
-        String condition = COLUMN_NAME + " Like ?";
-        String[] args = { "%" +  keyword + "%"};
-        Cursor cursor = db.query(TABLE_TASK, columns, condition, args,
+        Cursor cursor = db.query(TABLE_TASK, columns, null, null,
                 null, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -79,4 +76,24 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return tasks;
     }
+
+    public ArrayList<String> getAllNames() {
+        ArrayList<String> names = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns= {COLUMN_NAME};
+        Cursor cursor = db.query(TABLE_TASK, columns, null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(0);
+                names.add(name);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return names;
+    }
+
 }
