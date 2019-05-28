@@ -44,12 +44,16 @@ public class add extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
 
+
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.SECOND, 5);
+                cal.add(Calendar.SECOND,5);
+
                 Intent intent = new Intent(add.this, NotificationReceiver.class);
-                intent.putExtra("name" , name);
-                PendingIntent pendingIntent = PendingIntent.getActivity(add.this, reqCode , intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
+                intent.putExtra("name", name);
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(add.this, reqCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
                 finish();
 

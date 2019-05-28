@@ -7,8 +7,14 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
+import android.os.VibrationEffect;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -33,10 +39,23 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
         builder.setContentTitle("Task Manager Reminder");
-        builder.setContentText("Post letters");
+
+        String name = intent.getStringExtra("name");
+        builder.setContentText(name);
+
+        Log.e("name", name);
+
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
         builder.setAutoCancel(true);
+
+        builder.setLights(Color.WHITE, 500, 500);
+
+        long[] pattern = {500,500,500,500,500,500,500,500,500};
+        builder.setVibrate(pattern);
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        builder.setSound(alarmSound);
 
         Notification n = builder.build();
 
